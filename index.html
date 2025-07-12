@@ -1,60 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=devices-width,intial-scale=1.0"/>
-        <title>InspireMe - Quote App</title>
-        <link rel="stylesheet" href="index.css"/>
-    </head>
-    <body>
-        <header>
-            <h1>InspireMe</h1>
-            <nav>
-                <ul>
-                    <li><a href="#home">home</a></li>
-                    <li><a href="#add">Add Quote</a></li>
-                    <li><a href="#search">Search</a></li>
-                    <li><a href="#all">All Quote</a></li>
-                    <li><a href="#about">About</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <!--Home Section-->
-            <section id="home">
-                <h2>Quote of the Moment</h2>
-                <p id="random-quote">Click the button to see an inspirational quote </p>
-                <button onclick="generateQuote()">New Quote</button>
-            </section>
-            <!--Add Quote Section-->
-            <section id="add">
-                <h2>Add your Own Quote</h2>
-                <form id="quote-form">
-                    <input type="text" id="new-quote" placeholder="Enter your quote here..."required/>
-                    <input type="text" id="author" placeholder="Author(optional)"/>
-                    <button type="submit">Add Quote</button>
-                </form>
-            </section>
-            <!--Search Section-->
-            <section id="search">
-                <h2>Search Quotes</h2>
-                <input type="text" id="search-bar" placeholder="Type a word to search..."/>
-                <div id="search-result"></div>
-            </section>
-            <!--All Quote Section-->
-            <section id="all">
-                <h2>All Quote</h2>
-                <ul id="quote-list"></ul>
-            </section>
-            <!--About Section-->
-            <section id="about">
-                <h2>About this app</h2>
-                <p>This app is built to inspire you with quotes,and lets share your own thoughts with the world.Built using HTML,CSS and Javascript</p>
-            </section>
-        </main>
-        <footer>
-            <p>&copy;2025 inspireMe</p>
-        </footer>
-        <script src="js.js"></script>
-    </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InspireMe - Quote App</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <header>
+    <h1>InspireMe</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#add">Add Quote</a></li>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#all">All Quotes</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home Section -->
+    <section id="home">
+      <h2>Quote of the Moment</h2>
+      <p id="random-quote">Click the button to see an inspirational quote!</p>
+      <button onclick="generateQuote()">New Quote</button>
+    </section>
+
+    <!-- Add Quote Section -->
+    <section id="add">
+      <h2>Add Your Own Quote</h2>
+      <form id="quote-form">
+        <input type="text" id="new-quote" placeholder="Enter your quote here..." required />
+        <input type="text" id="author" placeholder="Author (optional)" />
+        <button type="submit">Add Quote</button>
+      </form>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search">
+      <h2>Search Quotes</h2>
+      <input type="text" id="search-bar" placeholder="Type a word to search..." />
+      <div id="search-results"></div>
+    </section>
+
+    <!-- All Quotes Section -->
+    <section id="all">
+      <h2>All Quotes</h2>
+      <ul id="quote-list"></ul>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>About This App</h2>
+      <p>This app is built to inspire you with quotes, and lets you share your own thoughts with the world. Built using HTML, CSS, and JavaScript.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 InspireMe</p>
+  </footer>
+
+  <script src="js.js"></script>
+</body>
 </html>

@@ -1,72 +1,79 @@
-// Array to store quotes
+// Initial list of quotes
 let quotes = [
+  { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
   { text: "You are stronger than you think.", author: "Unknown" },
-  { text: "Healing takes time.", author: "Unknown" },
-  { text: "You matter. Your story isn't over.", author: "Unknown" },
-  { text: "One day at a time.", author: "Unknown" },
-  { text: "It’s okay to not be okay.", author: "Unknown" }
+  { text: "Every day is a second chance.", author: "Oprah Winfrey" },
+  { text: "Dream big. Start small. Act now.", author: "Robin Sharma" },
+  { text: "Love is short , forgeting is long.", author: "Pablo Neruda" },
 ];
 
-// Show a random quote
+// Load quotes from localStorage if available
+if (localStorage.getItem("quotes")) {
+  quotes = JSON.parse(localStorage.getItem("quotes"));
+}
+
+// Function to generate a random quote
 function generateQuote() {
-  const quoteDisplay = document.getElementById("random-quote");
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
-  quoteDisplay.textContent = "${quote.text}" - ${quote.author || "Unknown"};
+  document.getElementById("random-quote").textContent = "${quote.text}" - $ {quote.author || "Unknown"};
 }
-// Add a new quote
-document.addEventListener("DOMContentLoaded", function () {
-  // Form handling
-  const form = document.getElementById("quote-form");
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+// Function to add a new quote
+document.getElementById("quote-form").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    const quoteInput = document.getElementById("new-quote").value.trim();
-    const authorInput = document.getElementById("author").value.trim();
+  const text = document.getElementById("new-quote").value.trim();
+  const author = document.getElementById("author").value.trim();
 
-    if (quoteInput !== "") {
-      quotes.push({ text: quoteInput, author: authorInput });
-      alert("Quote added!");
-      document.getElementById("new-quote").value = "";
-      document.getElementById("author").value = "";
-      displayAllQuotes();
-    }
-  });
+  if (text === "") {
+    alert("Please enter a quote.");
+    return;
+  }
 
-  // Search functionality
-  const searchBar = document.getElementById("search-bar");
-  searchBar.addEventListener("input", function () {
-    const searchTerm = searchBar.value.toLowerCase();
-    const resultsDiv = document.getElementById("search-results");
- resultsDiv.innerHTML = "";
+  const newQuote = { text, author: author || "Anonymous" };
+  quotes.push(newQuote);
+  localStorage.setItem("quotes", JSON.stringify(quotes));
 
-    if (searchTerm === "") return;
-
-    const results = quotes.filter((quote) =>
-      quote.text.toLowerCase().includes(searchTerm)
-    );
-
-    results.forEach((quote) => {
-      const p = document.createElement("p");
-      p.textContent = "${quote.text}" - ${quote.author || "Unknown"};
-      resultsDiv.appendChild(p);
-    });
-  });
-
-  // Show all quotes
-  displayAllQuotes();
-  generateQuote();
+  document.getElementById("new-quote").value = "";
+  document.getElementById("author").value = "";
+  alert("Quote added successfully!");
+  showAllQuotes();
 });
 
-// Display all quotes
-function displayAllQuotes() {
-  const quoteList = document.getElementById("quote-list");
-  quoteList.innerHTML = "";
-
-  quotes.forEach((quote) => {
+// Function to show all quotes
+function showAllQuotes() {
+  const list = document.getElementById("quote-list");
+  list.innerHTML = "";
+  quotes.forEach((quote, index) => {
     const li = document.createElement("li");
-    li.textContent = "${quote.text}" - ${quote.author || "Unknown"};
-    quoteList.appendChild(li);
+    li.textContent = "${quote.text}" —— ${quote.author};
+    list.appendChild(li);
   });
 }
+
+// Function to search quotes
+document.getElementById("search-bar").addEventListener("input", function () {
+  const keyword = this.value.toLowerCase();
+  const results = quotes.filter(q => q.text.toLowerCase().includes(keyword) || q.author.toLowerCase().includes(keyword));
+
+  const resultBox = document.getElementById("search-results");
+  resultBox.innerHTML = "";
+
+  if (results.length === 0) {
+    resultBox.textContent = "No quotes found.";
+    return;
+  }
+
+  results.forEach(q => {
+    const p = document.createElement("p");
+    p.textContent = "${q.text}" — ${q.author};
+    resultBox.appendChild(p);
+  });
+});
+
+// Load all quotes when page loads
+window.onload = function () {
+  showAllQuotes();
+  generateQuote();
+};
